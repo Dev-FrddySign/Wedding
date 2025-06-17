@@ -1,0 +1,155 @@
+@font-face {
+    font-family: 'MeaCulpa-Regular';
+    src: url('/src//assets/font/mea-culpa-robert-leuschke/MeaCulpa-Regular.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HighSociety-Regular';
+    src: url('/src/assets/font/high-society/HighSociety.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MrDafoe-Regular';
+    src: url('/src/assets/font/mr-dafoe/MrDafoe-Regular.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lie-to-me-Regular';
+    src: url('/src/assets/font/lie-to-me/Lie\ to\ Me\ -\ TTF.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gessele';
+    src: url('/src/assets/font/gessele/Gessele.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'elsieswashcaps';
+    src: url('/src/assets/font/elsie-swash-caps/ElsieSwashCaps-Regular.ttf') format('truetype');
+    font-display: swap;
+}
+
+
+.font1 {
+    font-family: 'MeaCulpa-Regular', sans-serif;
+    font-size: 60px;
+}
+
+.font2 {
+    font-family: 'HighSociety-Regular', sans-serif;
+    font-size: 20px;
+}
+
+.font3 {
+    font-family: 'MrDafoe-Regular', sans-serif;
+    font-size: 50px;
+}
+
+.font4 {
+    font-family: 'Lie-to-me-Regular', sans-serif;
+    font-size: 18px;
+}
+
+.font5 {
+    font-family: 'Gessele', sans-serif;
+    font-size: 30px;
+}
+
+.font6 {
+    font-family: 'elsieswashcaps', sans-serif;
+    font-size: 20px;
+}
+
+
+/* Responsive */
+
+@media screen and (max-width: 1000px) {
+    .font1 {
+        font-size: 50px;
+    }
+
+    .font2 {
+        font-size: 15px;
+    }
+
+    .font3 {
+        font-size: 30px;
+    }
+
+}
+
+@media screen and (max-width: 611px) {
+    .font1 {
+        font-size: 30px;
+    }
+
+    .font2 {
+        font-size: 12px;
+    }
+
+    .font3 {
+        font-size: 25px;
+    }
+
+}
+
+a[href*="google.com/maps"] {
+    position: relative;
+    z-index: 50;
+}
+
+.marquee-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.marquee-content {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: scroll-right-to-left 60s linear infinite;
+}
+
+.marquee-item {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+@keyframes scroll-right-to-left {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.marquee-item img {
+    width: 150px;
+    /* Tamaño inicial de las imágenes */
+    height: 150px;
+    /* Mantén el aspecto cuadrado */
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Mantener la animación y el efecto hover */
+.marquee-item:hover img {
+    transform: scale(1.1);
+    /* Aumenta ligeramente el tamaño en el hover */
+    filter: blur(0px);
+    /* Elimina el blur en el hover */
+}
+

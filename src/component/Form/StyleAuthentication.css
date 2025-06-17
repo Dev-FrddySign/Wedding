@@ -1,0 +1,135 @@
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenido del formulario con sombra y contorno */
+.form-content {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.2);
+    /* Fondo más suave */
+    backdrop-filter: blur(10px);
+    /* Desenfoque de fondo */
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil de contorno */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Borde sutil */
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    /* Enable flexbox for internal alignment */
+    flex-direction: column;
+    /* Stack elements vertically inside */
+    gap: 2px;
+    /* Set the gap between the elements to 2px */
+    align-items: center;
+    /* Center children horizontally */
+    text-align: center;
+    /* Center the text within the h4 */
+}
+
+.form-content:hover {
+    transform: scale(1.05);
+    /* Escalado ligero al pasar el cursor */
+}
+
+/* Estilos del texto */
+.text-center {
+    text-align: center;
+}
+
+.leading-relaxed {
+    line-height: 1.2;
+    /* Ajuste de altura de línea */
+}
+
+/* Efecto de blur en la capa */
+.blur-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: -1;
+    transition: backdrop-filter 0.3s ease;
+}
+
+/* Desenfoque al hacer hover */
+.form-container:hover~.blur-layer {
+    backdrop-filter: blur(6px);
+}
+
+/* Estilos del input y botón */
+input,
+button {
+    border-radius: 8px;
+    /* Bordes redondeados */
+
+}
+
+input {
+    padding: 12px 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    /* Efecto de sombra en el input */
+}
+
+button {
+    background-color: #365d3e;
+    /* Azul */
+    padding: 12px;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background-color: #349153;
+    /* Azul más oscuro */
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    /* Efecto de sombra al pasar el cursor */
+}
+
+/* Enlace */
+a {
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}

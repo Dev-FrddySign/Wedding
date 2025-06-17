@@ -1,0 +1,136 @@
+.confirm-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-group input {
+    padding: 0.5rem;
+    width: 80%;
+    font-size: 1rem;
+}
+
+.input-group button {
+    padding: 0.5rem 1rem;
+    background-color: #6B4C35;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.respuesta-container {
+    margin-top: 1.5rem;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-asistire {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-no-asistire {
+    background-color: #f44336;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-volver {
+    margin-top: 2rem;
+    background-color: #c8c1c1;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+}
+
+.loading-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.loading-container img {
+    width: 100px;
+    height: auto;
+}
+
+.confirm-container {
+    background: url('/path-to-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding: 20px;
+    color: rgb(13, 13, 13);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.input-style {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 0 0 10px rgba(255 255 255 / 0.15);
+    background-color: rgba(255 255 255 / 0.1);
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.input-style::placeholder {
+    color: rgba(1, 1, 1, 0.7);
+}
+
+.input-style:focus {
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 12px rgba(217, 200, 200, 0.5);
+}
+
+.respuesta-container {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(255 255 255 / 0.15);
+}
+
+.image-zoom {
+    position: relative;
+    z-index: 1;
+}
+
+input::placeholder {
+    color: #8e8989;
+    /* Gris claro */
+    opacity: 1;
+    /* Para evitar que algunos navegadores lo hagan translúcido */
+}
+
+.confirm-bg {
+    background-image: url('../../assets/img/marcos/Marco9.jpg');
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    filter: blur(0px);
+    position: relative;
+}
