@@ -82,7 +82,7 @@ const InvitacionPag = () => {
                 <img src={AsideDerechoTop} alt="Decoración superior derecha" className="w-full h-full object-contain" />
             </aside>
 
-            <aside className="absolute bottom-0 right-0 w-200px h-200px object-cover z-20">
+            <aside className="absolute bottom-0 right-0 w-200px h-200px object-cover z-10">
                 <img src={AsideDerechoPie} alt="Decoración inferior derecha" className="w-full h-full object-contain" />
             </aside>
 
@@ -238,14 +238,14 @@ const InvitacionPag = () => {
                 <p className="text-lg mb-2 font6">y etiquetanos en tus fotos y videos</p>
             </section>
 
-            <section className={cardSectionStyle}>
+            <section className={cardSectionStyle} z-index="30">
                 <img src={Musica} alt="sonido" className='w-20 h-20 w-1/2' />
                 <p className="text-lg mb-2 font6"><strong>¡Queremos armar la playlist perfecta!</strong></p>
                 <p className="text-lg mb-2 font6">Dinos cuales son las canciones que no</p>
                 <p className="text-lg mb-2 font6">pueden faltar en la Fiesta</p>
                 <button
                     onClick={() => navigate("/canciones")}
-                    className="font2 px-6 py-2 rounded-md bg-green-900 hover:brightness-95 transition mt-4 text-center text-white font-semibold"
+                    className="z-20 font2 px-6 py-2 rounded-md bg-green-900 hover:brightness-95 transition mt-4 text-center text-white font-semibold"
                 >
                     Selecciona tus canciones
                 </button>

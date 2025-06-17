@@ -7,20 +7,16 @@ const SpotifyPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [volume, setVolume] = useState(0); // Inicia en 0
+    const [volume, setVolume] = useState(0);
     const [liked, setLiked] = useState(false);
 
-    // Reproduce automáticamente al montar el componente
     useEffect(() => {
         const audio = audioRef.current;
-
         if (audio) {
-            // Establece volumen inicial en 0
             audio.volume = 0;
             audio.play()
                 .then(() => {
                     setIsPlaying(true);
-                    // Subir el volumen gradualmente
                     let currentVolume = 0;
                     const interval = setInterval(() => {
                         if (currentVolume < 1) {
@@ -30,7 +26,7 @@ const SpotifyPlayer = () => {
                         } else {
                             clearInterval(interval);
                         }
-                    }, 200); // Aumenta cada 200ms
+                    }, 200);
                 })
                 .catch(err => {
                     console.warn('Reproducción automática bloqueada por el navegador.', err);
@@ -117,13 +113,26 @@ const SpotifyPlayer = () => {
                     <path clipRule="evenodd" fillRule="evenodd" d="M12 21.6a9.6 9.6 0 1 0 0-19.2 9.6 9.6 0 0 0 0 19.2Zm.848-12.352a1.2 1.2 0 0 0-1.696-1.696l-3.6 3.6a1.2 1.2 0 0 0 0 1.696l3.6 3.6a1.2 1.2 0 0 0 1.696-1.696L11.297 13.2H15.6a1.2 1.2 0 1 0 0-2.4h-4.303l1.551-1.552Z" />
                 </svg>
 
-                <div onClick={togglePlay} className="play-pause">
+                {/* BOTÓN DE PLAY/PAUSE CORREGIDO PARA MÓVILES */}
+                <div
+                    onClick={togglePlay}
+                    className="play-pause"
+                    style={{
+                        padding: '12px',
+                        cursor: 'pointer',
+                        zIndex: 100,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        touchAction: 'manipulation'
+                    }}
+                >
                     {isPlaying ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="24" width="24">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="32" width="32">
                             <path clipRule="evenodd" fillRule="evenodd" d="M8 5h2v14H8zm6 0h2v14h-2z" />
                         </svg>
                     ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="24" width="24">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="32" width="32">
                             <path clipRule="evenodd" fillRule="evenodd" d="M8 5v14l11-7z" />
                         </svg>
                     )}
