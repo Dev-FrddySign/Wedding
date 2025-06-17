@@ -27,7 +27,7 @@ import Foto14 from '../../assets/img/marquee-wrapper/Foto14.jpg';
 
 import Iglesia from '../../assets/img/svg/Iglesia.gif';
 import Brindar from '../../assets/img/svg/Brindar.gif';
-import DessCode from '../../assets/img/svg/dresscode.gif';
+import DessCode from '../../assets/img/svg/DressCode.gif';
 import Regalo from '../../assets/img/svg/regalo.gif';
 import Baile from '../../assets/img/svg/baile.gif';
 import Foto from '../../assets/img/svg/foto.gif';
