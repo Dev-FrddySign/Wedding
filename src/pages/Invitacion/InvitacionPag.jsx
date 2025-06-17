@@ -28,10 +28,10 @@ import Foto14 from '../../assets/img/marquee-wrapper/Foto14.jpg';
 import Iglesia from '../../assets/img/svg/Iglesia.gif';
 import Brindar from '../../assets/img/svg/Brindar.gif';
 import DessCode from '../../assets/img/svg/DressCode.gif';
-import Regalo from '../../assets/img/svg/regalo.gif';
-import Baile from '../../assets/img/svg/baile.gif';
-import Foto from '../../assets/img/svg/foto.gif';
-import Musica from '../../assets/img/svg/musica.gif';
+import Regalo from '../../assets/img/svg/Regalo.gif';
+import Baile from '../../assets/img/svg/Baile.gif';
+import Foto from '../../assets/img/svg/Foto.gif';
+import Musica from '../../assets/img/svg/Musica.gif';
 
 import AsideIzq from '../../assets/img/aside/AsideIzq.png';
 import AsideDerechoTop from '../../assets/img/aside/AsideDerechoTop.png';
