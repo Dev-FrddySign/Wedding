@@ -6,7 +6,7 @@ const totalDays = 31;
 
 const WeddingCalendar = () => {
     return (
-        <div className="flex justify-center items-center min-h-screen px-4 ">
+        <div className="flex justify-center items-center min-h-screen whitespace-nowrap mt-[-100px]">
             <div className="bg-white border-[3px] border-[#D4AF37] p-6 rounded-2xl shadow-lg max-w-md w-full text-center bg-white/40 backdrop-blur-md p-8 rounded-cl shadow-lg max-w-l w-full border border-white/70">
                 <h2 className="text-4xl font-dancing text-[#D4AF37] font1">Diciembre</h2>
                 <h3 className="text-xl font-dancing text-gray-700 mb-4">2025</h3>

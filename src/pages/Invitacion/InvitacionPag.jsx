@@ -4,7 +4,6 @@ import ScrollReveal from 'scrollreveal';
 import Countdown from '../../component/Countdown/Countdown';
 import './StyleInvitacion.css';
 
-import Arrow from '../../assets/img/svg/arrow.svg';
 
 import { ParallaxScrollDemo } from '../../component/ParallaxScroll/ParallaxScrollDemo';
 
@@ -40,7 +39,7 @@ import WeddingCalendar from '../../component/Calendario/WeddinCalendar';
 import SpotifyPlayer from '../../component/Spotify/SpotifyPlayer';
 
 
-const cardSectionStyle = "invitacion-section  z-30 flex flex-col items-center justify-center w-full max-w-md min-h-[460px] bg-white/10 backdrop-blur-md p-8 rounded-cl shadow-lg border border-white/10 mb-8 image-zoom transition duration-500 ease-in-out hover:scale-105 hover:shadow-xl";
+const cardSectionStyle = "invitacion-section transition-transform duration-500 ease-in-out z-40 max-w-md min-h-[460px] bg-white/10 backdrop-blur-md p-8 shadow-lg border border-white/10 mb-8 flex flex-col items-center justify-center rounded-2xl transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl";
 
 
 const InvitacionPag = () => {
@@ -82,7 +81,7 @@ const InvitacionPag = () => {
                 <img src={AsideDerechoTop} alt="Decoración superior derecha" className="w-full h-full object-contain" />
             </aside>
 
-            <aside className="absolute bottom-0 right-0 w-200px h-200px object-cover z-10">
+            <aside className="absolute bottom-0 right-0 w-200px h-200px object-cover z-1">
                 <img src={AsideDerechoPie} alt="Decoración inferior derecha" className="w-full h-full object-contain" />
             </aside>
 
@@ -107,7 +106,7 @@ const InvitacionPag = () => {
                 </h1>
             </section>
 
-            <section className="invitacion-section flex flex-col items-center justify-center py-4 sm:py-6 px-2 sm:px-4 z-30">
+            <section className="invitacion-section flex flex-col items-center justify-center  py-4 sm:py-6 px-2 sm:px-4 z-30">
                 <h1 className="text-sm sm:text-base md:text-lg sm:mb-6 text-gray-800">
                     <p className='mb-5 font4'>Estamos emocionados de celebrar con ustedes</p>
                     <p className='mb-10 font4'>Te esperamos el día:</p>
@@ -132,9 +131,9 @@ const InvitacionPag = () => {
                 </button>
             </section>
 
-            <p className="font6 text-sm sm:text-base md:text-lg sm:mb-6 text-gray-800 mt-6 mb-6">Así fue como nos encontramos: en medio de risas espontáneas, sueños compartidos y realidades que se tejían sin planearlo.</p>
+            <p className="font6 text-sm sm:text-base md:text-lg sm:mb-6 text-gray-800 mt-6 mb-8">Así fue como nos encontramos: en medio de risas espontáneas, sueños compartidos y realidades que se tejían sin planearlo.</p>
 
-            <section className={cardSectionStyle}>
+            <section className={`${cardSectionStyle}  ml-4 mr-4`}>
                 <h2 className="text-xl font-semibold mb-2">CEREMONIA</h2>
                 <img src={Iglesia} alt="Iglesia"
                     className='w-20 h-20 w-1/2'
@@ -153,7 +152,7 @@ const InvitacionPag = () => {
                 </div>
             </section>
 
-            <section className={cardSectionStyle}>
+            <section className={`${cardSectionStyle} ml-4 mr-4`}>
                 <h2 className="text-xl font-semibold mb-2">CELEBRACION</h2>
                 <img src={Brindar} alt="Copas de Brindis"
                     className='w-20 h-20 w-1/2'
@@ -201,18 +200,20 @@ const InvitacionPag = () => {
                 <p className="text-lg mb-2 font6">Se reserva el blanco para la novia</p>
             </section>
 
-            <section className={cardSectionStyle}>
+            <section className={`${cardSectionStyle} ml-4 mr-4`}>
                 <img src={Regalo} alt="Regalo"
                     className='w-20 h-20 w-1/2'
                 />
                 <p className="text-lg mb-2 font6">Si deseas hacernos un regalo, ademas de tu valiosa compañia</p>
                 <p className="text-lg mb-2 font6">puedes hacerlo a traves de esta siguiente cuenta</p>
-                <button className="font2  px-6 py-2 rounded-md bg-green-900 hover:brightness-95 transition mt-4  text-center text-white font-semibold">
+                <button className=" font2  px-6 py-2 rounded-md bg-green-900 hover:brightness-95 transition mt-4  text-center text-white font-semibold"
+                onClick={() => navigate("/NroCuenta")}
+                >
                     Ver datos bancarios
                 </button>
             </section>
 
-            <p className='font6 text-sm sm:text-base md:text-lg  text-gray-800'>Y es precisamente ese amor el que queremos compartir con ustedes en este momento tan especial y significativo de nuestras vidas.</p>
+            <p className='font6 mb-10 text-sm sm:text-base md:text-lg  text-gray-800'>Y es precisamente ese amor el que queremos compartir con ustedes en este momento tan especial y significativo de nuestras vidas.</p>
 
             <ParallaxScrollDemo />
 
@@ -222,11 +223,11 @@ const InvitacionPag = () => {
                 />
                 <div className='border-t border-gray-300 w-1/2 mb-4'></div>
                 <p className="text-lg mb-2 font6">¡La Fiesta esta en marcha!</p>
-                <p className="text-lg mb-2 font6">Sera una ocacion para alejarnos y</p>
+                <p className="text-lg mb-2 font6">Sera una ocasion para alejarnos y</p>
                 <p className="text-lg mb-2 font6">disfrutar juntos, en familia</p>
             </section>
 
-            <section className={cardSectionStyle}>
+            <section className={`${cardSectionStyle} ml-4 mr-4`}>
                 <img src={Foto} alt="Foto"
                     className='w-20 h-20 w-1/2'
                 />
@@ -238,7 +239,7 @@ const InvitacionPag = () => {
                 <p className="text-lg mb-2 font6">y etiquetanos en tus fotos y videos</p>
             </section>
 
-            <section className={cardSectionStyle} z-index="30">
+            <section className={`${cardSectionStyle} ml-4 mr-4`}>
                 <img src={Musica} alt="sonido" className='w-20 h-20 w-1/2' />
                 <p className="text-lg mb-2 font6"><strong>¡Queremos armar la playlist perfecta!</strong></p>
                 <p className="text-lg mb-2 font6">Dinos cuales son las canciones que no</p>

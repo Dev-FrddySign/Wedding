@@ -5,6 +5,7 @@ import InvitacionPag from "./pages/Invitacion/InvitacionPag";
 import ConfirmacionInvitacion from "./pages/Agendar/ConfirmacionInvitacion";
 import ReglasDeCelebracion from "./pages/DetalleCelebracion/ReglasDeCelebracion";
 import SeleccionarCanciones from "./pages/Musica/SeleccionarCanciones";
+import NroCuenta from "./pages/Cuenta/NroCuenta";
 ;
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           path="/canciones"
           element={<SeleccionarCanciones token={token} />}
         />
+        <Route path="/nrocuenta" element={<NroCuenta />} />
       </Routes>
     </Router>
   );

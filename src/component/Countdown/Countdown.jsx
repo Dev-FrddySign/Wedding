@@ -44,7 +44,7 @@ const Countdown = () => {
     }, []);
 
     return (
-        <div className="flex items-center justify-center bg-white/10 backdrop-blur-md p-8 rounded-cl shadow-lg border border-white/10 ">
+        <div className="rounded-lg border-white/80 mt-[-100px] flex items-center  justify-center bg-white/10 backdrop-blur-md p-4 rounded-cl shadow-lg shadow-lg border border-white/10 ">
             <div className="">
                 <div className="absolute inset-0 border-gold rounded-lg pointer-events-none" />
                 <div className="flex justify-center space-x-4">
@@ -53,19 +53,19 @@ const Countdown = () => {
                         <p>Meses</p>
                     </div>
                     <div className="text-center">
-                        <h2 className="text-4xl font-bold">:  {timeLeft.days}</h2> {/* Ahora muestra el total de días */}
+                        <h2 className="text-4xl font-bold">{timeLeft.days}</h2> {/* Ahora muestra el total de días */}
                         <p>Días</p>
                     </div>
                     <div className="text-center">
-                        <h2 className="text-4xl font-bold">:{timeLeft.hours}</h2>
+                        <h2 className="text-4xl font-bold">{timeLeft.hours}</h2>
                         <p>Hs</p>
                     </div>
                     <div className="text-center">
-                        <h2 className="text-4xl font-bold">:{timeLeft.minutes}</h2>
+                        <h2 className="text-4xl font-bold">{timeLeft.minutes}</h2>
                         <p>Min</p>
                     </div>
                     <div className="text-center">
-                        <h2 className="text-4xl font-bold">:{timeLeft.seconds}</h2>
+                        <h2 className="text-4xl font-bold">{timeLeft.seconds}</h2>
                         <p>Seg</p>
                     </div>
                 </div>
