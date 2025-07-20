@@ -34,6 +34,7 @@ const ConfirmacionInvitacion = () => {
     const [invitado, setInvitado] = useState(null);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [menuActivo, setMenuActivo] = useState(false);
     const navigate = useNavigate();
 
     const handleBuscar = () => {
@@ -99,9 +100,9 @@ const ConfirmacionInvitacion = () => {
                         confirmButtonText: 'Cerrar',
                     });
 
-                    // Resetear estados
                     setInvitado(null);
                     setCodigo('');
+                    setMenuActivo(false); // opcional: cierra menú si estaba abierto
                 } else {
                     throw new Error('Fallo en el envío del correo');
                 }
@@ -118,22 +119,35 @@ const ConfirmacionInvitacion = () => {
 
     return (
         <div className="confirm-bg">
-            <button
-                onClick={() => navigate('/invitacion')}
-                className="absolute  rounded-full top-5 left-5 w-12 h-12 flex items-center justify-center bg-white/20 text-white text-2xl rounded-full animate-bounce transition duration-700 hover:scale-110 hover:bg-white/30 backdrop-blur-sm"
-            >
-                ←
-            </button>
+            {/* Botón hamburguesa con flecha */}
+            <div className="absolute top-5 left-5 z-50">
+                <button
+                    className={`hamburger hamburger--arrow ${menuActivo ? 'is-active' : ''}`}
+                    type="button"
+                    onClick={() => {
+                        if (menuActivo) {
+                            navigate('/invitacion');
+                        } else {
+                            setMenuActivo(true);
+                        }
+                    }}
+                    aria-label="Menú"
+                >
+                    <span className="hamburger-box">
+                        <span className="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
 
             <div className="min-h-screen flex items-center justify-center">
                 <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-lg border border-white/10 mb-8 image-zoom transition duration-700 ease-in-out hover:scale-105 hover:shadow-xl w-full max-w-md text-black">
-                    <h2 className=" text-2xl mb-4 text-center font-semibold">Confirma tu asistencia</h2>
+                    <h2 className="text-2xl mb-4 text-center font-semibold">Confirma tu asistencia</h2>
                     <div className="text-black flex gap-2 mb-4">
                         <input
                             type="text"
                             value={codigo}
                             onChange={(e) => setCodigo(e.target.value)}
-                            placeholder="Ej: Fam001"
+                            placeholder="Ej: Fam000"
                             className="text-black flex-1 p-2 rounded bg-white/20 border border-white/30 placeholder-white/70"
                         />
                         <button

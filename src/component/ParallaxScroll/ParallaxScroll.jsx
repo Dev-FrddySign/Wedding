@@ -21,7 +21,7 @@ export const ParallaxScroll = ({ images, className }) => {
     const thirdPart = images.slice(2 * third);
 
     return (
-        <div className={cn("h-[40rem] items-start overflow-y-auto w-full mb-10", className)} ref={gridRef}>
+        <div className={cn("h-30px items-start overflow-y-auto w-full mb-10", className)} ref={gridRef}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start max-w-5xl mx-auto gap-5 py-40 px-5">
                 {[firstPart, secondPart, thirdPart].map((part, i) => (
                     <div className="grid gap-10" key={`col-${i}`}>
@@ -32,7 +32,7 @@ export const ParallaxScroll = ({ images, className }) => {
                             >
                                 <img
                                     src={el}
-                                    className="h-90 w-full display-flex align-items-center justify-content-center image-zoom object-cover object-left-top rounded-lg gap-10 !m-0 !p-0"
+                                    className="h-90 w-full object-cover object-center rounded-lg gap-10 !m-0 !p-0"
                                     height="700"
                                     width="700"
                                     alt="thumbnail"

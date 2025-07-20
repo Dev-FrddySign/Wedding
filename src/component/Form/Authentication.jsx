@@ -129,6 +129,11 @@ const Authentication = () => {
                         </button>
                     </div>
                 )}
+                <div>
+                    <p className='font2 font-bold text-black mt-8 text-center'>
+                        Nota: Para asegurar una buena experiencia abre este link en tu navegador de celular.
+                    </p>
+                </div>
             </div>
         </div>
     );

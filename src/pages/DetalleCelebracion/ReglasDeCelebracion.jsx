@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'hamburgers/dist/hamburgers.css';
+
 import pie from '../../assets/img/Detalles/pie.png';
 import farol from '../../assets/img/Detalles/farol.png';
 import fondo from '../../assets/img/Detalles/fondo.png';
 
-// Tus imágenes personalizadas
 import img1 from '../../assets/img/ReglasDeCelebracion/img1.png';
 import img2 from '../../assets/img/ReglasDeCelebracion/img2.png';
 import img3 from '../../assets/img/ReglasDeCelebracion/img3.png';
@@ -13,8 +14,8 @@ import img5 from '../../assets/img/ReglasDeCelebracion/img5.png';
 
 const ReglasDeCelebracion = () => {
     const navigate = useNavigate();
+    const [menuActivo, setMenuActivo] = useState(false);
 
-    // Lista de reglas con imágenes
     const reglas = [
         { texto: 'Olvidarse de los problemas.', imagen: img1 },
         { texto: 'Tener siempre el vaso lleno.', imagen: img2 },
@@ -35,12 +36,25 @@ const ReglasDeCelebracion = () => {
                 boxSizing: 'border-box'
             }}
         >
-            <button
-                onClick={() => navigate('/invitacion')}
-                className="absolute rounded-full top-5 left-5 w-12 h-12 flex items-center justify-center bg-white/20 text-white text-2xl animate-bounce transition duration-700 hover:scale-110 hover:bg-white/30 backdrop-blur-sm"
-            >
-                ←
-            </button>
+            {/* Botón Hamburguesa con flecha */}
+            <div className="absolute top-1 left-1 z-50">
+                <button
+                    className={`hamburger hamburger--arrow ${menuActivo ? 'is-active' : ''}`}
+                    type="button"
+                    onClick={() => {
+                        if (menuActivo) {
+                            navigate('/invitacion');
+                        } else {
+                            setMenuActivo(true);
+                        }
+                    }}
+                    aria-label="Menú"
+                >
+                    <span className="hamburger-box">
+                        <span className="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
 
             <aside className="absolute top-0 right-0 z-10">
                 <img src={farol} alt="Farol" className="w-50" />
@@ -50,7 +64,7 @@ const ReglasDeCelebracion = () => {
                 <img src={pie} alt="Pie de página" className="w-50" />
             </aside>
 
-            <section className="font1 text-5xl invitacion-section flex flex-col items-center justify-center py-4 mt-8">
+            <section className="font1 text-5xl invitacion-section flex flex-col items-center justify-center py-8 mt-8">
                 <h1 className="text-4x5 font-dancing">Reglas de Nuestro Matrimonio</h1>
             </section><br />
 

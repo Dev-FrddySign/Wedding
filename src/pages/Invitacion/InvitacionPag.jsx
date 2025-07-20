@@ -38,13 +38,10 @@ import AsideDerechoPie from '../../assets/img/aside/AsideDerechoPie.png';
 import WeddingCalendar from '../../component/Calendario/WeddinCalendar';
 import SpotifyPlayer from '../../component/Spotify/SpotifyPlayer';
 
-
 const cardSectionStyle = "invitacion-section transition-transform duration-500 ease-in-out z-40 max-w-md min-h-[460px] bg-white/10 backdrop-blur-md p-8 shadow-lg border border-white/10 mb-8 flex flex-col items-center justify-center rounded-2xl transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl";
-
 
 const InvitacionPag = () => {
     const navigate = useNavigate();
-
 
 
     useEffect(() => {
@@ -171,7 +168,7 @@ const InvitacionPag = () => {
             <p className="font6 text-sm sm:text-base md:text-lg sm:mb-6 text-gray-800 mt-6 mb-6">Desde aquel instante, nuestras almas comenzaron a caminar al unísono, construyendo con amor, paciencia y entrega el sendero que hoy nos une. </p>
             
             <section className="invitacion-section flex flex-col items-center justify-center py-4 mt-7">
-                <h2 className="text-xl font-semibold mb-2 mt-6">NUESTRA HISTORIA</h2>
+                <h2 className="font6 text-xl font-semibold mb-2 mt-6">NUESTRA HISTORIA</h2>
                 <div className="marquee-wrapper mt-15 ">
                     <div className="marquee-content">
                         {[Foto1, Foto2, Foto3, Foto4, Foto5, Foto6, Foto7, Foto8, Foto9, Foto10, Foto11, Foto12, Foto13, Foto14].map((foto, index) => (
