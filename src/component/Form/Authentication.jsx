@@ -99,13 +99,13 @@ const Authentication = () => {
                                 ¡NOS ENCANTARIA QUE SEAS PARTE DE ESTE DIA TAN ESPECIAL!
                             </h4>
                             <p className="text-black mb-2 font2 font-semibold">Ingresá tu código para continuar:</p>
-                            <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center ">
+                            <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center">
                                 <input
                                     type="text"
                                     value={code}
                                     onChange={(e) => setCode(e.target.value)}
-                                    placeholder="Ej: Fam000"
-                                    className="font2 font-semibold w-full px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500 focus:outline-none"
+                                    placeholder="Ej: Famxxx"
+                                    className=" font2 font-semibold w-full px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500 focus:outline-none"
                                 />
                                 {error && <p className="text-red-500 text-sm text-center">{error}</p>}
                                 <button
@@ -120,22 +120,24 @@ const Authentication = () => {
                 )}
 
                 {submitted && guestInfo && (
-                    <div className="popup-container bg-white/60 backdrop-blur-md p-8 rounded-xl shadow-lg border border-white/40 text-center max-w-md animate-fade-in flex flex-col items-center">
-                        <h2 className="text-xl font-bold mb-2 text-gray-800">¡Bienvenid@!</h2>
+                    <div className="popup-container bg-white/10 backdrop-blur-md px-18 py-3 rounded-xl shadow-lg border border-white/40 text-center max-w-md animate-fade-in flex flex-col items-center">
+                        <h2 className="text-xl font-bold mb-2 text-gray-800">¡Bienvenido!</h2>
                         <p className="text-lg text-gray-700 mb-1"><strong>Invitado(s):</strong> {guestInfo.name}</p>
                         <p className="text-gray-700 mb-4"><strong>Número de invitados:</strong> {guestInfo.guests}</p>
                         <button
                             onClick={handleGoToInvitation}
-                            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 shadow-lg focus:outline-none display flex justify-center items-center" 
+                            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 shadow-lg focus:outline-none flex justify-center items-center"
                         >
                             Ver invitación
                         </button>
                     </div>
                 )}
-                <div>
-                    <p className='font2 font-bold text-black mt-8 text-center'>
-                        Nota: Para asegurar una buena experiencia abre este link en tu navegador de celular.
-                    </p>
+                <div className="mt-8 w-full max-w-md px-8">
+                    <div className="transition duration-300 bg-white/30 border-l-4 border-yellow-400 text-yellow-900 p-4 rounded-lg shadow-md backdrop-blur-sm hover:bg-white/60 hover:backdrop-blur-md hover:shadow-lg hover:border-white/40">
+                        <p className="font2 font-semibold text-center">
+                            <strong>Nota:</strong> Para asegurar una buena experiencia, abre este enlace en el <strong>navegador de tu celular</strong>.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
