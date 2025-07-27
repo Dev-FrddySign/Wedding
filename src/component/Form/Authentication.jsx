@@ -28,9 +28,12 @@ const guestData = {
     Fam014: { name: 'Sara Piña', guests: 1 },
     Fam015: { name: 'Catalina Guerrero', guests: 1 },
     Fam016: { name: 'Lisandro & Ivanna', guests: 2 },
-    Fam017: { name: 'Ninoska & Esposo', guests: 2 },
-    Fam018: { name: 'Joanny & Etson', guests: 2 },
+    Fam017: { name: 'Patricia', guests: 1 },
+    Fam018: { name: 'Juli & Eddie', guests: 2 },
     Fam019: { name: 'Oscarina y esposo', guests: 2 },
+    Fam020: { name: 'joanny & etson', guests: 2 },
+    Fam021: { name: 'antri & esposo', guests: 2 },
+    Fam022: { name: 'Catty', guests: 1 },
 };
 
 const Authentication = () => {

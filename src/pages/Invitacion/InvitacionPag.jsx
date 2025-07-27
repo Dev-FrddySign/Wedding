@@ -38,7 +38,7 @@ import AsideDerechoPie from '../../assets/img/aside/AsideDerechoPie.png';
 import WeddingCalendar from '../../component/Calendario/WeddinCalendar';
 import SpotifyPlayer from '../../component/Spotify/SpotifyPlayer';
 
-const cardSectionStyle = "invitacion-section transition-transform duration-500 ease-in-out z-40 max-w-md min-h-[460px] bg-white/10 backdrop-blur-md p-8 shadow-lg border border-white/10 mb-8 flex flex-col items-center justify-center rounded-2xl transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl";
+const cardSectionStyle = "invitacion-section transition-transform duration-500 ease-in-out z-40 w-full max-w-[90%] sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl bg-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8 shadow-lg border border-white/10 mb-8 flex flex-col items-center justify-center rounded-2xl hover:scale-105 hover:shadow-2xl";
 
 const InvitacionPag = () => {
     const navigate = useNavigate();
@@ -210,7 +210,7 @@ const InvitacionPag = () => {
                 </button>
             </section>
 
-            <p className='font6 mb-10 text-sm sm:text-base md:text-lg  text-gray-800'>Y es precisamente ese amor el que queremos compartir con ustedes en este momento tan especial y significativo de nuestras vidas.</p>
+            <p className='font6 text-sm sm:text-base md:text-lg text-gray-800'>Y es precisamente ese amor el que queremos compartir con ustedes en este momento tan especial y significativo de nuestras vidas.</p>
 
             <ParallaxScrollDemo />
 

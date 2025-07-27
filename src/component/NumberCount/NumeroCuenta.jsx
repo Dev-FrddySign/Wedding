@@ -136,23 +136,23 @@ Correo: frddysign@gmail.com
                         </p>
 
                         <div className="space-y-2 text-sm text-gray-700 cursor-pointer select-none mb-8">
-                            <div onClick={() => copiar("Freddy José Saldivia Rodríguez")}>
-                                <strong>Nombre:</strong> Freddy José Saldivia Rodríguez
+                            <div onClick={() => copiar("Graciela Rivas")}>
+                                <strong>Nombre:</strong> Graciela Rivas
                             </div>
-                            <div onClick={() => copiar("12.345.678-9")}>
-                                <strong>RUT:</strong> 12.345.678-9
+                            <div onClick={() => copiar("26350589-1")}>
+                                <strong>RUT:</strong> 26350589-1
                             </div>
-                            <div onClick={() => copiar("Banco Estado")}>
-                                <strong>Banco:</strong> Banco Estado
+                            <div onClick={() => copiar("Banco Falabella ")}>
+                                <strong>Banco:</strong> Banco Falabella
                             </div>
                             <div onClick={() => copiar("Cuenta Corriente")}>
                                 <strong>Tipo de cuenta:</strong> Cuenta Corriente
                             </div>
-                            <div onClick={() => copiar("00000000000000")}>
-                                <strong>N° Cuenta:</strong> 00000000000000
+                            <div onClick={() => copiar("19991545728")}>
+                                <strong>N° Cuenta:</strong> 19991545728
                             </div>
-                            <div onClick={() => copiar("frddysign@gmail.com")}>
-                                <strong>Correo:</strong> frddysign@gmail.com
+                            <div onClick={() => copiar("grivascoronel@gmail.com")}>
+                                <strong>Correo:</strong> grivascoronel@gmail.com
                             </div>
                         </div>
 
