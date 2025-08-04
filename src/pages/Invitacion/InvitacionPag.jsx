@@ -4,6 +4,7 @@ import ScrollReveal from 'scrollreveal';
 import Countdown from '../../component/Countdown/Countdown';
 import './StyleInvitacion.css';
 
+import confirmacion from '../../assets/img/prueba/mejora.png'
 
 import { ParallaxScrollDemo } from '../../component/ParallaxScroll/ParallaxScrollDemo';
 
@@ -50,7 +51,7 @@ const InvitacionPag = () => {
             distance: '40px',
             duration: 1000,
             delay: 100,
-            reset: false, // <-- Evita reinicios que bloquean botones
+            reset: false,
             scale: 0.95,
             opacity: 0,
             easing: 'ease-in-out',
@@ -58,7 +59,7 @@ const InvitacionPag = () => {
         });
 
         const timeout = setTimeout(() => {
-            sr.reveal('.invitacion-section', { interval: 200 });
+            sr.reveal('.invitacion-section', { interval: 200, });
             const asideElement = document.querySelector('aside');
             if (asideElement) {
                 sr.reveal('aside', { origin: 'left', distance: '80px', duration: 1500 });
@@ -91,7 +92,7 @@ const InvitacionPag = () => {
                     <p className="text-2xl font6  mb-2 font-bold leading-relaxed">
                         Nuestra Boda
                     </p>
-                    
+
                 </div>
             </section>
 
@@ -116,19 +117,50 @@ const InvitacionPag = () => {
 
             <Countdown />
 
-            <section className="invitacion-section flex flex-col items-center justify-center pt-6 pb-6 px-4">
-                <button
-                    className="text-xl font2 font-bold px-6 py-3 rounded bg-yellow-300 hover:brightness-110 transition duration-200"
-                    onClick={() => {
-                        console.log("Click en Agendar Fecha");
-                        navigate('/confirmacion');
-                    }}
-                >
-                    Confirmar Asistencia
-                </button>
-            </section>
+            <img
+                src={confirmacion}
+                alt="img"
+                className="w-full rounded mt-4 mb-4 max-w-md"
+            />
 
-            <p className="font6 text-sm sm:text-base md:text-lg sm:mb-6 text-gray-800 mt-6 mb-8">Así fue como nos encontramos: en medio de risas espontáneas, sueños compartidos y realidades que se tejían sin planearlo.</p>
+            <p className="font6 text-black text-lg font-bold drop-shadow mb-10 mt-6">
+                CONFIRMA TU ASISTENCIA ANTES DEL 01/11/2025
+            </p>
+
+            <div className="relative w-full max-w-md mt-4 items-center justify-center text-center">
+
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                    {/* <p className="font7 text-black text-lg font-bold drop-shadow">
+                        Confirma
+                    </p>
+                    <p className="font7 text-black text-lg font-bold drop-shadow">
+                        tu
+                    </p>
+                    <p className="font7 text-black text-lg mb-10 font-bold drop-shadow">
+                        Asistencia
+                    </p> */}
+                    <button
+                        className="text-xl font2 font-bold px-6 py-3 rounded bg-yellow-300 hover:brightness-110 transition duration-200 mb-8"
+                        onClick={() => {
+                            console.log("Click en Agendar Fecha");
+                            navigate('/confirmacion');
+                        }}
+                    >
+                        Confirmar Asistencia
+                    </button>
+
+                    {/* <p className="font2 text-black text-sm drop-shadow mt-4">
+                        CONFIRMA TU ASISTENCIA 
+                    </p>
+                    <p className="font2 text-black text-sm drop-shadow ">
+                        ANTES DEL 01/11/2025
+                    </p> */}
+                </div>
+            </div>
+
+            <p className="font6 text-sm sm:text-base md:text-lg sm:mb-6 text-gray-800 mt-10 mb-10 px-4 sm:px-8 text-justify">
+                Así fue como nos encontramos: en medio de risas espontáneas, sueños compartidos y realidades que se tejían sin planearlo.
+            </p>
 
             <section className={`${cardSectionStyle}  ml-4 mr-4`}>
                 <h2 className="text-xl font-semibold mb-2">CEREMONIA</h2>
@@ -164,9 +196,11 @@ const InvitacionPag = () => {
                     Detalle de la Celebración
                 </button>
             </section>
-            
-            <p className="font6 text-sm sm:text-base md:text-lg sm:mb-6 text-gray-800 mt-6 mb-6">Desde aquel instante, nuestras almas comenzaron a caminar al unísono, construyendo con amor, paciencia y entrega el sendero que hoy nos une. </p>
-            
+
+            <p className="font6 text-sm sm:text-base md:text-lg sm:mb-6 text-gray-800 mt-6 mb-6 px-4 sm:px-8 text-justify">
+                Desde aquel instante, nuestras almas comenzaron a caminar al unísono, construyendo con amor, paciencia y entrega el sendero que hoy nos une.
+            </p>
+
             <section className="invitacion-section flex flex-col items-center justify-center py-4 mt-7">
                 <h2 className="font6 text-xl font-semibold mb-2 mt-6">NUESTRA HISTORIA</h2>
                 <div className="marquee-wrapper mt-15 ">
@@ -204,13 +238,15 @@ const InvitacionPag = () => {
                 <p className="text-lg mb-2 font6">Si deseas hacernos un regalo, ademas de tu valiosa compañia</p>
                 <p className="text-lg mb-2 font6">puedes hacerlo a traves de esta siguiente cuenta</p>
                 <button className=" font2  px-6 py-2 rounded-md bg-green-900 hover:brightness-95 transition mt-4  text-center text-white font-semibold"
-                onClick={() => navigate("/NroCuenta")}
+                    onClick={() => navigate("/NroCuenta")}
                 >
                     Ver datos bancarios
                 </button>
             </section>
 
-            <p className='font6 text-sm sm:text-base md:text-lg text-gray-800'>Y es precisamente ese amor el que queremos compartir con ustedes en este momento tan especial y significativo de nuestras vidas.</p>
+            <p className="font6 text-sm sm:text-base md:text-lg text-gray-800 text-justify px-4">
+                Y es precisamente ese amor el que queremos compartir con ustedes en este momento tan especial y significativo de nuestras vidas.
+            </p>
 
             <ParallaxScrollDemo />
 
