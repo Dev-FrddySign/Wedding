@@ -106,8 +106,8 @@ const InvitacionPag = () => {
 
             <section className="font1 invitacion-section flex flex-col items-center justify-center  py-4 sm:py-6 px-2 sm:px-4 z-30">
                 <h1 className="text-sm sm:text-base md:text-lg sm:mb-6 text-gray-800">
-                    <p className='mb-5 font4'>Estamos emocionados de celebrar con ustedes</p>
-                    <p className='mb-10 font4'>Te esperamos el día:</p>
+                    <p className='font6 mb-5 font4'>Estamos emocionados de celebrar con ustedes</p>
+                    <p className='font6 mb-10 font4'>Te esperamos el día:</p>
                     <p className="text-xl sm:text-2xl md:text-3xl sm:mt-6 font1 text-gray-800">
                         20 de Diciembre 2025
                     </p>
