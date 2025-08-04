@@ -4,7 +4,7 @@ import ScrollReveal from 'scrollreveal';
 import Countdown from '../../component/Countdown/Countdown';
 import './StyleInvitacion.css';
 
-import confirmacion from '../../assets/img/prueba/Invitación_de_boda_con_fotos_minimalista_y_moderna__1_-removebg-preview.png'
+import confirmacion from '../../assets/img/prueba/Invitación_de_boda_con_fotos_minimalista_y_moderna-removebg-preview.png'
 
 import { ParallaxScrollDemo } from '../../component/ParallaxScroll/ParallaxScrollDemo';
 
@@ -120,7 +120,7 @@ const InvitacionPag = () => {
             <img
                 src={confirmacion}
                 alt="img"
-                className="w-full rounded mt-4 mb-4 max-w-md mt-10 mb-15"
+                className="w-full rounded mt-4 mb-4 max-w-md mt-15 mb-15"
             />
 
             {/* <p className="font6 text-black text-lg font-bold drop-shadow mb-10 mt-6">
