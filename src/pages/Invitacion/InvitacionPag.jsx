@@ -4,7 +4,7 @@ import ScrollReveal from 'scrollreveal';
 import Countdown from '../../component/Countdown/Countdown';
 import './StyleInvitacion.css';
 
-import confirmacion from '../../assets/img/prueba/Invitación_de_boda_con_fotos_minimalista_y_moderna-removebg-preview.png'
+import confirmacion from '../../assets/img/prueba/Invitación_de_boda_con_fotos_minimalista_y_moderna__1_-removebg-preview.png'
 
 import { ParallaxScrollDemo } from '../../component/ParallaxScroll/ParallaxScrollDemo';
 
