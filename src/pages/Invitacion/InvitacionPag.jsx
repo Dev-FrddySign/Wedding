@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ScrollReveal from 'scrollreveal';
 import Countdown from '../../component/Countdown/Countdown';
 import './StyleInvitacion.css';
 
-import confirmacion from '../../assets/img/prueba/Invitación_de_boda_con_fotos_minimalista_y_moderna-removebg-preview.png'
+import confirmacion from '../../assets/img/prueba/confirmacion.png';
 
 import { ParallaxScrollDemo } from '../../component/ParallaxScroll/ParallaxScrollDemo';
 
 import Fondo1 from '../../assets/img/fondo1.png';
+import saveTheDateVideo from '../../assets/video/save the date.mp4';
 
 import Foto1 from '../../assets/img/marquee-wrapper/Foto1.jpg';
 import Foto2 from '../../assets/img/marquee-wrapper/Foto2.jpg';
@@ -24,7 +25,6 @@ import Foto11 from '../../assets/img/marquee-wrapper/Foto11.jpg';
 import Foto12 from '../../assets/img/marquee-wrapper/Foto12.jpg';
 import Foto13 from '../../assets/img/marquee-wrapper/Foto13.jpg';
 import Foto14 from '../../assets/img/marquee-wrapper/Foto14.jpg';
-
 
 import Iglesia from '../../assets/img/svg/Iglesia.gif';
 import Brindar from '../../assets/img/svg/Brindar.gif';
@@ -44,10 +44,37 @@ const cardSectionStyle = "invitacion-section transition-transform duration-500 e
 
 const fotos = [Foto1, Foto2, Foto3, Foto4, Foto5, Foto6, Foto7, Foto8, Foto9, Foto10, Foto11, Foto12, Foto13, Foto14];
 
+const SaveTheDate = ({ saveTheDateVideo, cardSectionStyle }) => {
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.play().catch(() => {
+                console.warn("El autoplay fue bloqueado por el navegador.");
+            });
+        }
+    }, []);
+
+    return (
+        <section className={`${cardSectionStyle} ml-4 mr-4 fill-neutral-100`}>
+            <h1 className="text-lg mb-2 font-bold">SAVE THE DATE</h1>
+            <div onContextMenu={e => e.preventDefault()} style={{ position: "relative", overflow: "hidden" }}>
+                <video
+                    ref={videoRef}
+                    src={saveTheDateVideo}
+                    controls={true}
+                    muted
+                    loop
+                    playsInline
+                    style={{ width: "100%", height: "auto" }}
+                />
+            </div>
+        </section>
+    );
+};
 
 const InvitacionPag = () => {
     const navigate = useNavigate();
-
 
     useEffect(() => {
         const sr = ScrollReveal({
@@ -71,14 +98,12 @@ const InvitacionPag = () => {
             distance: '0px',
         });
 
-        sr.reveal('.invitacion-section', {
-            interval: 100,
-        });
-
+        sr.reveal('.invitacion-section', { interval: 100 });
     }, []);
 
     return (
-        <div className=" relative min-h-screen overflow-hidden flex flex-col items-center justify-center text-center bg-[linear-gradient(to_left,_#A08963,_#ffffff,_#F5F0D4,_#FFB4A2)]">
+        <div className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center text-center bg-[linear-gradient(to_left,_#A08963,_#ffffff,_#F5F0D4,_#FFB4A2)]">
+
             <img src={AsideIzq} alt="Aside Izquierdo"
                 className='aside-izq absolute top-0 left-0 w-200px h-200px object-cover z-10'
             />
@@ -100,7 +125,6 @@ const InvitacionPag = () => {
                     <p className="text-2xl font6  mb-2 font-bold leading-relaxed">
                         Nuestra Boda
                     </p>
-
                 </div>
             </section>
 
@@ -131,38 +155,16 @@ const InvitacionPag = () => {
                 className="w-full rounded mt-4 mb-4 max-w-md mt-15 mb-15"
             />
 
-            {/* <p className="font6 text-black text-lg font-bold drop-shadow mb-10 mt-6">
-                CONFIRMA TU ASISTENCIA ANTES DEL 01/11/2025
-            </p> */}
-
             <div className="relative w-full max-w-md mt-4 items-center justify-center text-center">
-
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                    {/* <p className="font7 text-black text-lg font-bold drop-shadow">
-                        Confirma
-                    </p>
-                    <p className="font7 text-black text-lg font-bold drop-shadow">
-                        tu
-                    </p>
-                    <p className="font7 text-black text-lg mb-10 font-bold drop-shadow">
-                        Asistencia
-                    </p> */}
                     <button
                         className="text-xl font2 font-bold px-6 py-3 rounded bg-yellow-300 hover:brightness-110 transition duration-200 mb-8"
                         onClick={() => {
-                            console.log("Click en Agendar Fecha");
                             navigate('/confirmacion');
                         }}
                     >
                         Confirmar Asistencia
                     </button>
-
-                    {/* <p className="font2 text-black text-sm drop-shadow mt-4">
-                        CONFIRMA TU ASISTENCIA 
-                    </p>
-                    <p className="font2 text-black text-sm drop-shadow ">
-                        ANTES DEL 01/11/2025
-                    </p> */}
                 </div>
             </div>
 
@@ -221,7 +223,6 @@ const InvitacionPag = () => {
                     </div>
                 </div>
             </section>
-
 
             <section className={cardSectionStyle}>
                 <img src={DessCode} alt="Vestimenta"
@@ -288,6 +289,10 @@ const InvitacionPag = () => {
                     Selecciona tus canciones
                 </button>
             </section>
+
+            {/* Componente SaveTheDate */}
+            <SaveTheDate saveTheDateVideo={saveTheDateVideo} cardSectionStyle={cardSectionStyle} />
+
         </div>
     );
 };
