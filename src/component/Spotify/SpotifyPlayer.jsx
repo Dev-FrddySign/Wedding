@@ -4,29 +4,42 @@ import cancion from '../../assets/audio/16.- Que Mas Puedo Pedir (bonus track) -
 
 const SpotifyPlayer = () => {
     const audioRef = useRef(null);
+
+    // Inicializa isMuted desde localStorage (o false si no existe)
+    const [isMuted, setIsMuted] = useState(() => {
+        const saved = localStorage.getItem('spotifyPlayerMuted');
+        return saved === 'true';
+    });
+
     const [isPlaying, setIsPlaying] = useState(false);
-    const [isMuted, setIsMuted] = useState(false);
 
     useEffect(() => {
         const audio = audioRef.current;
         if (audio) {
             audio.volume = 1;
+            audio.muted = isMuted; // aplica mute según estado guardado
             audio.play()
                 .then(() => setIsPlaying(true))
                 .catch(() => setIsPlaying(false));
         }
-    }, []);
+    }, [isMuted]);
 
     const togglePlay = () => {
         if (!audioRef.current) return;
-        isPlaying ? audioRef.current.pause() : audioRef.current.play();
+        if (isPlaying) {
+            audioRef.current.pause();
+        } else {
+            audioRef.current.play();
+        }
         setIsPlaying(!isPlaying);
     };
 
     const toggleMute = () => {
         if (!audioRef.current) return;
-        audioRef.current.muted = !isMuted;
-        setIsMuted(!isMuted);
+        const nuevoMute = !isMuted;
+        audioRef.current.muted = nuevoMute;
+        setIsMuted(nuevoMute);
+        localStorage.setItem('spotifyPlayerMuted', nuevoMute);
     };
 
     return (

@@ -9,6 +9,7 @@ import confirmacion from '../../assets/img/prueba/Invitación_de_boda_con_fotos_
 import { ParallaxScrollDemo } from '../../component/ParallaxScroll/ParallaxScrollDemo';
 
 import Fondo1 from '../../assets/img/fondo1.png';
+
 import Foto1 from '../../assets/img/marquee-wrapper/Foto1.jpg';
 import Foto2 from '../../assets/img/marquee-wrapper/Foto2.jpg';
 import Foto3 from '../../assets/img/marquee-wrapper/Foto3.jpg';
@@ -41,6 +42,8 @@ import SpotifyPlayer from '../../component/Spotify/SpotifyPlayer';
 
 const cardSectionStyle = "invitacion-section transition-transform duration-500 ease-in-out z-40 w-full max-w-[90%] sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl bg-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8 shadow-lg border border-white/10 mb-8 flex flex-col items-center justify-center rounded-2xl hover:scale-105 hover:shadow-2xl";
 
+const fotos = [Foto1, Foto2, Foto3, Foto5, Foto6, Foto7, Foto8, Foto9, Foto10, Foto11, Foto12, Foto13, Foto14];
+
 const InvitacionPag = () => {
     const navigate = useNavigate();
 
@@ -49,37 +52,52 @@ const InvitacionPag = () => {
         const sr = ScrollReveal({
             origin: 'bottom',
             distance: '40px',
-            duration: 1000,
-            delay: 100,
-            reset: false,
+            duration: 600,    // tiempo medio, ni lento ni rápido
+            delay: 20,
+            reset: true,      // permite que se anime al hacer scroll arriba o abajo
             scale: 0.95,
             opacity: 0,
             easing: 'ease-in-out',
             mobile: true,
         });
 
-        const timeout = setTimeout(() => {
-            sr.reveal('.invitacion-section', { interval: 200, });
-            const asideElement = document.querySelector('aside');
-            if (asideElement) {
-                sr.reveal('aside', { origin: 'left', distance: '80px', duration: 1500 });
-            }
-        }, 100);
+        // Elementos grandes (hero, aside) con animación rápida sin reset (solo aparecen 1 vez)
+        sr.reveal('.hero, .aside-izq, .aside-der', {
+            duration: 300,
+            delay: 0,
+            reset: false,
+            opacity: 1,
+            scale: 1,
+            distance: '0px',
+        });
 
-        return () => clearTimeout(timeout);
+        // Secciones generales con animación normal, se activan en scroll up/down
+        sr.reveal('.invitacion-section', {
+            interval: 100,
+        });
+
+        // Fotos de historia, rápido y con intervalo escalonado para que entren dinámicamente y sin retardos largos
+        sr.reveal('.historia-section .marquee-item', {
+            duration: 400,
+            interval: 120,
+            delay: 50,
+            origin: 'bottom',
+            distance: '20px',
+            reset: true,
+        });
     }, []);
 
     return (
         <div className=" relative min-h-screen overflow-hidden flex flex-col items-center justify-center text-center bg-[linear-gradient(to_left,_#A08963,_#ffffff,_#F5F0D4,_#FFB4A2)]">
             <img src={AsideIzq} alt="Aside Izquierdo"
-                className='absolute top-0 left-0 w-200px h-200px object-cover z-10'
+                className='aside-izq absolute top-0 left-0 w-200px h-200px object-cover z-10'
             />
 
-            <aside className="absolute top-0 right-0 w-200px h-200px object-cover z-10">
+            <aside className="aside-der absolute top-0 right-0 w-200px h-200px object-cover z-10">
                 <img src={AsideDerechoTop} alt="Decoración superior derecha" className="w-full h-full object-contain" />
             </aside>
 
-            <aside className="absolute bottom-0 right-0 w-200px h-200px object-cover z-1">
+            <aside className="aside-der absolute bottom-0 right-0 w-200px h-200px object-cover z-1">
                 <img src={AsideDerechoPie} alt="Decoración inferior derecha" className="w-full h-full object-contain" />
             </aside>
 
@@ -201,17 +219,13 @@ const InvitacionPag = () => {
                 Desde aquel instante, nuestras almas comenzaron a caminar al unísono, construyendo con amor, paciencia y entrega el sendero que hoy nos une.
             </p>
 
-            <section className="invitacion-section flex flex-col items-center justify-center py-4 mt-7">
+            <section className="invitacion-section historia-section flex flex-col items-center justify-center py-4 mt-7">
                 <h2 className="font6 text-xl font-semibold mb-2 mt-6">NUESTRA HISTORIA</h2>
                 <div className="marquee-wrapper mt-15 ">
                     <div className="marquee-content">
-                        {[Foto1, Foto2, Foto3, Foto4, Foto5, Foto6, Foto7, Foto8, Foto9, Foto10, Foto11, Foto12, Foto13, Foto14].map((foto, index) => (
-                            <div key={index} className="marquee-item group-hover:blur-sm hover:!blur-0 hover:scale-110 transition duration-300">
-                                <img
-                                    src={foto}  // Ahora se usan las imágenes importadas
-                                    alt={`Foto ${index + 1}`}
-                                    className="w-full h-full object-cover rounded-xl shadow-md"
-                                />
+                        {[...fotos, ...fotos].map((foto, i) => (
+                            <div key={i} className="marquee-item">
+                                <img src={foto} alt={`Foto ${i + 1}`} />
                             </div>
                         ))}
                     </div>

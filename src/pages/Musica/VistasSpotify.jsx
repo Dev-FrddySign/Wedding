@@ -1,5 +1,5 @@
 // VistasSpotify.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Marco4 from "../../assets/img/marcos/Marco4.jpg";
 import { guardarCancion, obtenerCanciones } from "../../firebase";
@@ -9,9 +9,29 @@ const CLIENT_ID = "7c83b59356ee491b881679e0573ba76f";
 const CLIENT_SECRET = "3d30a3aa6c7c48eeb9ff01b2f5f9c99c";
 
 const guestData = {
-  Fam001: { name: 'Maria Coronel', guests: 1 },
-  Fam002: { name: 'Johanny & Daniel', guests: 4 },
-
+  fam000: { name: "Prueba", guests: 0 },
+  fam001: { name: "Maria Coronel", guests: 1 },
+  fam002: { name: "Johanny & Daniel", guests: 4 },
+  fam003: { name: "Marialyn Suarez", guests: 3 },
+  fam004: { name: "Delibeth & Alejandra", guests: 2 },
+  fam005: { name: "Ivett & Abuelita", guests: 2 },
+  fam006: { name: "Yordan & Christofer", guests: 2 },
+  fam007: { name: "Daniela & Carlos", guests: 3 },
+  fam008: { name: "Papa y Mama Daniela", guests: 2 },
+  fam009: { name: "Pastor & Angela", guests: 4 },
+  fam010: { name: "Anamilena & Hendry", guests: 3 },
+  fam011: { name: "Susana Lagos", guests: 2 },
+  fam012: { name: "Stefy Quezada", guests: 1 },
+  fam013: { name: "Susana Zelada", guests: 1 },
+  fam014: { name: "Sara Piña", guests: 1 },
+  fam015: { name: "Catalina Guerrero", guests: 1 },
+  fam016: { name: "Lisandro & Ivanna", guests: 2 },
+  fam017: { name: "Patricia", guests: 1 },
+  fam018: { name: "Juli & Eddie", guests: 2 },
+  fam019: { name: "Oscarina y esposo", guests: 2 },
+  fam020: { name: "joanny & etson", guests: 2 },
+  fam021: { name: "antri & esposo", guests: 2 },
+  fam022: { name: "Catty", guests: 1 },
 };
 
 async function getToken() {
@@ -28,7 +48,7 @@ async function getToken() {
 }
 
 function normalizeString(str) {
-  return str.toLowerCase().replace(/[^a-z0-9]/gi, '');
+  return str.toLowerCase().replace(/[^a-z0-9]/gi, "");
 }
 
 function isDuplicate(track, existingTracks) {
@@ -45,9 +65,9 @@ const VistasSpotify = () => {
   const [query, setQuery] = useState("");
   const [token, setToken] = useState(null);
   const [tracks, setTracks] = useState([]);
-  const [selectedTrack, setSelectedTrack] = useState(null);
   const [selectedTracks, setSelectedTracks] = useState([]);
   const [codigo, setCodigo] = useState("");
+  const [loading, setLoading] = useState(false); // Estado loading agregado
 
   const search = async () => {
     let currentToken = token;
@@ -57,7 +77,9 @@ const VistasSpotify = () => {
     }
     if (!query.trim()) return;
     const res = await fetch(
-      `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=5`,
+      `https://api.spotify.com/v1/search?q=${encodeURIComponent(
+        query
+      )}&type=track&limit=5`,
       { headers: { Authorization: `Bearer ${currentToken}` } }
     );
     const data = await res.json();
@@ -67,7 +89,8 @@ const VistasSpotify = () => {
   const limpiar = () => {
     setQuery("");
     setTracks([]);
-    setSelectedTrack(null);
+    setSelectedTracks([]);
+    setCodigo("");
   };
 
   const agregarCancion = (track) => {
@@ -80,7 +103,6 @@ const VistasSpotify = () => {
       return;
     }
     setSelectedTracks([...selectedTracks, track]);
-    setSelectedTrack(track);
   };
 
   const eliminarCancion = (id) => {
@@ -88,60 +110,103 @@ const VistasSpotify = () => {
   };
 
   const enviarSeleccion = async () => {
-    if (!guestData[codigo]) {
+    const codigoNormalizado = codigo.trim().toLowerCase();
+
+    if (!guestData[codigoNormalizado]) {
       alert("Código no válido.");
       return;
     }
 
-    const cancionesGuardadas = await obtenerCanciones();
-    const cancionesNoRepetidas = selectedTracks.filter((track) => !isDuplicate(track, cancionesGuardadas));
-
-    if (cancionesNoRepetidas.length < selectedTracks.length) {
-      alert("Una o más canciones ya fueron seleccionadas por otros invitados. Solo se enviarán las no repetidas.");
-    }
-
-    if (cancionesNoRepetidas.length === 0) {
-      alert("Todas las canciones ya fueron seleccionadas previamente.");
+    if (selectedTracks.length === 0) {
+      alert("No has seleccionado ninguna canción.");
       return;
     }
 
-    const nombreInvitado = guestData[codigo].name;
-    const cancionesFormateadas = cancionesNoRepetidas.map((t) => `${t.name} - ${t.artists[0].name}`);
+    setLoading(true); // Activa spinner
 
-    for (const track of cancionesNoRepetidas) {
-      await guardarCancion({
-        invitado: nombreInvitado,
-        track: track.name,
-        artista: track.artists[0].name,
-        id: track.id,
-        fecha: new Date().toISOString(),
-      });
-    }
+    try {
+      // Obtener canciones guardadas para filtrar duplicados
+      const cancionesGuardadas = await obtenerCanciones();
+      const cancionesNoRepetidas = selectedTracks.filter(
+        (track) => !isDuplicate(track, cancionesGuardadas)
+      );
 
-    emailjs.send(
-      "service_9ohnj1f", // TU SERVICE ID
-      "template_w21418o", // TU TEMPLATE ID
-      {
+      if (cancionesNoRepetidas.length < selectedTracks.length) {
+        alert(
+          "Una o más canciones ya fueron seleccionadas por otros invitados. Solo se enviarán las no repetidas."
+        );
+      }
+
+      if (cancionesNoRepetidas.length === 0) {
+        alert("Todas las canciones ya fueron seleccionadas previamente.");
+        setLoading(false);
+        return;
+      }
+
+      const nombreInvitado = guestData[codigoNormalizado].name;
+      const numeroInvitados = guestData[codigoNormalizado].guests;
+      const cancionesFormateadas = cancionesNoRepetidas.map(
+        (t) => `${t.name} - ${t.artists[0].name}`
+      );
+
+      // Guardar canciones en Firebase
+      for (const track of cancionesNoRepetidas) {
+        await guardarCancion({
+          invitado: nombreInvitado,
+          track: track.name,
+          artista: track.artists[0].name,
+          id: track.id,
+          fecha: new Date().toISOString(),
+        });
+      }
+
+      const emailParams = {
         to_name: "Freddy",
-        from_name: nombreInvitado,
-        message: cancionesFormateadas.join("\n"),
+        name: nombreInvitado,
+        guestsData: codigoNormalizado.toUpperCase(),
+        guests: numeroInvitados,
+        canciones: cancionesFormateadas.join("\n"),
         reply_to: "frddysign@gmail.com",
-      },
-      "xgMOMZuu9CkvW9lOF" // TU PUBLIC KEY
-    );
+      };
 
-    alert("Canciones enviadas con éxito.");
-    setSelectedTracks([]);
+      await emailjs.send(
+        "service_9ohnj1f", // service ID correcto
+        "template_u0q3e2o", // template ID correcto para canciones
+        emailParams,
+        "xgMOMZuu9CkvW9lOF" // public key
+      );
+
+      alert("Se envió tu selección."); // Popup luego de enviar
+
+      limpiar();
+    } catch (error) {
+      console.error("Error enviando email:", error);
+      alert("Error al enviar las canciones. Intenta nuevamente.");
+    } finally {
+      setLoading(false); // Desactiva spinner
+    }
   };
 
   return (
-    <div className="min-h-screen text-black relative p-4 max-w-xl mx-auto" style={{ backgroundImage: `url(${Marco4})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
-
+    <div
+      className="min-h-screen text-black relative p-4 max-w-xl mx-auto"
+      style={{
+        backgroundImage: `url(${Marco4})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <div className="absolute top-1 left-1 z-50">
         <button
-          className={`hamburger hamburger--arrow ${menuActivo ? "is-active" : ""}`}
+          className={`hamburger hamburger--arrow ${
+            menuActivo ? "is-active" : ""
+          }`}
           type="button"
-          onClick={() => menuActivo ? navigate("/invitacion") : setMenuActivo(true)}
+          onClick={() =>
+            menuActivo ? navigate("/invitacion") : setMenuActivo(true)
+          }
           aria-label="Menú"
         >
           <span className="hamburger-box">
@@ -167,18 +232,28 @@ const VistasSpotify = () => {
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && search()}
         />
-        <button onClick={limpiar} className="bg-[#1db954] hover:bg-[#1ed760] text-black px-4 py-2 rounded font-semibold">
+        <button
+          onClick={limpiar}
+          className="bg-[#1db954] hover:bg-[#1ed760] text-black px-4 py-2 rounded font-semibold"
+        >
           Limpiar
         </button>
       </div>
 
-      <button onClick={search} className="bg-[#1db954] hover:bg-[#1ed760] text-black px-6 py-2 rounded mt-2 mb-4 font-semibold w-full">
+      <button
+        onClick={search}
+        className="bg-[#1db954] hover:bg-[#1ed760] text-black px-6 py-2 rounded mt-2 mb-4 font-semibold w-full"
+      >
         Buscar
       </button>
 
       <div className="space-y-2">
         {tracks.map((track) => (
-          <div key={track.id} className="p-2 border border-gray-700 rounded cursor-pointer hover:bg-[#282828]" onClick={() => agregarCancion(track)}>
+          <div
+            key={track.id}
+            className="p-2 border border-gray-700 rounded cursor-pointer hover:bg-[#282828]"
+            onClick={() => agregarCancion(track)}
+          >
             {track.name} - {track.artists[0].name}
           </div>
         ))}
@@ -187,7 +262,9 @@ const VistasSpotify = () => {
       {selectedTracks.length > 0 && (
         <div className="mt-5 space-y-6">
           <iframe
-            src={`https://open.spotify.com/embed/track/${selectedTracks[selectedTracks.length - 1].id}`}
+            src={`https://open.spotify.com/embed/track/${
+              selectedTracks[selectedTracks.length - 1].id
+            }`}
             width="100%"
             height="80"
             frameBorder="0"
@@ -196,47 +273,70 @@ const VistasSpotify = () => {
             title="Spotify Player"
           ></iframe>
 
-            {/* Texto de contador */}
-    <h3 className="text-lg font-bold text-center text-black">
-      Canciones seleccionadas {selectedTracks.length}/5
-    </h3>
+          <h3 className="text-lg font-bold text-center text-black">
+            Canciones seleccionadas {selectedTracks.length}/5
+          </h3>
 
-    {/* Lista visual de canciones (sin iframe) */}
-    {selectedTracks.map((track) => (
-      <div
-        key={track.id}
-        className="relative border border-gray-300 bg-white rounded-lg p-4 shadow-md"
-      >
-        {/* Botón eliminar */}
-        <button
-          onClick={() => eliminarCancion(track.id)}
-          className="absolute top-2 right-2 text-red-600 text-xl hover:text-red-800 transition-all"
-          title="Eliminar canción"
-        >
-          &times;
-        </button>
+          {selectedTracks.map((track) => (
+            <div
+              key={track.id}
+              className="relative border border-gray-300 bg-white rounded-lg p-4 shadow-md"
+            >
+              <button
+                onClick={() => eliminarCancion(track.id)}
+                className="absolute top-2 right-2 text-red-600 text-xl hover:text-red-800 transition-all"
+                title="Eliminar canción"
+              >
+                &times;
+              </button>
 
-        <div className="flex items-center gap-4">
-          <img
-            src={track.album.images[0]?.url}
-            alt={`${track.name} cover`}
-            className="w-16 h-16 rounded shadow-md"
-          />
-          <div className="flex-grow">
-            <p className="font-semibold text-black">{track.name}</p>
-            <p className="text-sm text-gray-600">{track.artists[0].name}</p>
-          </div>
-        </div>
-      </div>
-    ))}
+              <div className="flex items-center gap-4">
+                <img
+                  src={track.album.images[0]?.url}
+                  alt={`${track.name} cover`}
+                  className="w-16 h-16 rounded shadow-md"
+                />
+                <div className="flex-grow">
+                  <p className="font-semibold text-black">{track.name}</p>
+                  <p className="text-sm text-gray-600">{track.artists[0].name}</p>
+                </div>
+              </div>
+            </div>
+          ))}
 
+          {/* Spinner y botón */}
+          {loading && (
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <svg
+                className="animate-spin h-6 w-6 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+              <span>Enviando selección...</span>
+            </div>
+          )}
 
           <button
-            disabled={selectedTracks.length === 0}
+            disabled={selectedTracks.length === 0 || loading}
             onClick={enviarSeleccion}
             className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-6 py-2 rounded mt-4 w-full"
           >
-            Enviar selección
+            {loading ? "Enviando..." : "Enviar selección"}
           </button>
         </div>
       )}
