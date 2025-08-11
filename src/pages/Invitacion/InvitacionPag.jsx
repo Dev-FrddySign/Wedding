@@ -57,7 +57,6 @@ const SaveTheDate = ({ saveTheDateVideo, cardSectionStyle }) => {
 
     return (
         <section className={`${cardSectionStyle} ml-4 mr-4 fill-neutral-100`}>
-            <h1 className="text-lg mb-2 font-bold">SAVE THE DATE</h1>
             <div onContextMenu={e => e.preventDefault()} style={{ position: "relative", overflow: "hidden" }}>
                 <video
                     ref={videoRef}
