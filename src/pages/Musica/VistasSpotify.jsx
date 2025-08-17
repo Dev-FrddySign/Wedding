@@ -9,29 +9,29 @@ const CLIENT_ID = "7c83b59356ee491b881679e0573ba76f";
 const CLIENT_SECRET = "3d30a3aa6c7c48eeb9ff01b2f5f9c99c";
 
 const guestData = {
-    Fam000: { name: 'Prueba', guests: 0 },
-    Fam001: { name: 'Maria Coronel', guests: 1 },
-    Fam002: { name: 'Flia Abi Karam Rivas', guests: 4 },
-    Fam003: { name: 'Flia Suarez', guests: 3 },
-    Fam004: { name: 'Flia Briceño Bauza', guests: 2 },
-    Fam005: { name: 'Flia Briceño', guests: 2 },
-    Fam006: { name: 'Flia Pedreañez', guests: 2 },
-    Fam007: { name: 'Flia Perozo Barrios', guests: 3 },
-    Fam008: { name: 'Flia Barrios', guests: 2 },
-    Fam009: { name: 'Flia Alvarado Barrios', guests: 4 },
-    Fam010: { name: 'Flia Gonzalez Acosta', guests: 3 },
-    Fam011: { name: 'Susana Lagos & Compañia', guests: 2 },
-    Fam012: { name: 'Stefy Quezada', guests: 1 },
-    Fam013: { name: 'Susana Zelada', guests: 1 },
-    Fam014: { name: 'Sara Piña', guests: 1 },
-    Fam015: { name: 'Catalina Guerrero', guests: 1 },
-    Fam016: { name: 'Lisandro Castillo & Compañia', guests: 2 },
-    Fam017: { name: 'Patricia Hernandez', guests: 1 },
-    Fam018: { name: 'Julie Arias & Compañia', guests: 2 },
-    Fam019: { name: 'Flia Boscan Mora', guests: 2 },
-    Fam020: { name: 'Flia Luca Ramirez', guests: 2 },
-    Fam021: { name: 'Flia Tejada Romero', guests: 2 },
-    Fam022: { name: 'Hectluis Leon', guests: 1 },
+  Fam000: { name: 'Prueba', guests: 0 },
+  Fam001: { name: 'Maria Coronel', guests: 1 },
+  Fam002: { name: 'Flia Abi Karam Rivas', guests: 4 },
+  Fam003: { name: 'Flia Suarez', guests: 3 },
+  Fam004: { name: 'Flia Briceño Bauza', guests: 2 },
+  Fam005: { name: 'Flia Briceño', guests: 2 },
+  Fam006: { name: 'Flia Pedreañez', guests: 2 },
+  Fam007: { name: 'Flia Perozo Barrios', guests: 3 },
+  Fam008: { name: 'Flia Barrios', guests: 2 },
+  Fam009: { name: 'Flia Alvarado Barrios', guests: 4 },
+  Fam010: { name: 'Flia Gonzalez Acosta', guests: 3 },
+  Fam011: { name: 'Susana Lagos & Compañia', guests: 2 },
+  Fam012: { name: 'Stefy Quezada', guests: 1 },
+  Fam013: { name: 'Susana Zelada', guests: 1 },
+  Fam014: { name: 'Sara Piña', guests: 1 },
+  Fam015: { name: 'Catalina Guerrero', guests: 1 },
+  Fam016: { name: 'Lisandro Castillo & Compañia', guests: 2 },
+  Fam017: { name: 'Patricia Hernandez', guests: 1 },
+  Fam018: { name: 'Julie Arias & Compañia', guests: 2 },
+  Fam019: { name: 'Flia Boscan Mora', guests: 2 },
+  Fam020: { name: 'Flia Luca Ramirez', guests: 2 },
+  Fam021: { name: 'Flia Tejada Romero', guests: 2 },
+  Fam022: { name: 'Hectluis Leon', guests: 1 },
 };
 
 async function getToken() {
@@ -112,7 +112,12 @@ const VistasSpotify = () => {
   const enviarSeleccion = async () => {
     const codigoNormalizado = codigo.trim().toLowerCase();
 
-    if (!guestData[codigoNormalizado]) {
+    // Convertir las claves de guestData a minúsculas
+    const guestDataLower = Object.fromEntries(
+      Object.entries(guestData).map(([key, value]) => [key.toLowerCase(), value])
+    );
+
+    if (!guestDataLower[codigoNormalizado]) {
       alert("Código no válido.");
       return;
     }
@@ -143,8 +148,8 @@ const VistasSpotify = () => {
         return;
       }
 
-      const nombreInvitado = guestData[codigoNormalizado].name;
-      const numeroInvitados = guestData[codigoNormalizado].guests;
+      const nombreInvitado = guestDataLower[codigoNormalizado].name;
+      const numeroInvitados = guestDataLower[codigoNormalizado].guests;
       const cancionesFormateadas = cancionesNoRepetidas.map(
         (t) => `${t.name} - ${t.artists[0].name}`
       );
@@ -177,7 +182,6 @@ const VistasSpotify = () => {
       );
 
       alert("Se envió tu selección."); // Popup luego de enviar
-
       limpiar();
     } catch (error) {
       console.error("Error enviando email:", error);
@@ -200,9 +204,8 @@ const VistasSpotify = () => {
     >
       <div className="absolute top-1 left-1 z-50">
         <button
-          className={`hamburger hamburger--arrow ${
-            menuActivo ? "is-active" : ""
-          }`}
+          className={`hamburger hamburger--arrow ${menuActivo ? "is-active" : ""
+            }`}
           type="button"
           onClick={() =>
             menuActivo ? navigate("/invitacion") : setMenuActivo(true)
@@ -262,9 +265,8 @@ const VistasSpotify = () => {
       {selectedTracks.length > 0 && (
         <div className="mt-5 space-y-6">
           <iframe
-            src={`https://open.spotify.com/embed/track/${
-              selectedTracks[selectedTracks.length - 1].id
-            }`}
+            src={`https://open.spotify.com/embed/track/${selectedTracks[selectedTracks.length - 1].id
+              }`}
             width="100%"
             height="80"
             frameBorder="0"
