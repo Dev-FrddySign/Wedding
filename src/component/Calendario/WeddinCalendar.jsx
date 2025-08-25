@@ -1,13 +1,13 @@
 import corazon from '../../assets/img/aside/corazon.png';
 
 const days = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
-const startingDay = 0; // Diciembre 2025 comienza en lunes (0=Sun)
+const startingDay = 1; // 1 de diciembre 2025 es lunes
 const totalDays = 31;
 
 const WeddingCalendar = () => {
     return (
         <div className="flex justify-center items-center min-h-screen whitespace-nowrap mt-[-100px]">
-            <div className="bg-white border-[3px] border-[#D4AF37] p-6 rounded-2xl shadow-lg max-w-md w-full text-center bg-white/40 backdrop-blur-md p-8 rounded-cl shadow-lg max-w-l w-full border border-white/70">
+            <div className="bg-white/40 backdrop-blur-md p-8 rounded-2xl shadow-lg max-w-md w-full border-[3px] border-[#D4AF37] text-center">
                 <h2 className="text-4xl font-dancing text-[#D4AF37] font1">Diciembre</h2>
                 <h3 className="text-xl font-dancing text-gray-700 mb-4">2025</h3>
 
@@ -27,17 +27,14 @@ const WeddingCalendar = () => {
                         return (
                             <div
                                 key={index}
-                                className={`h-12 flex items-center justify-center text-lg font-medium ${isSpecial
-                                    ? 'relative'
-                                    : ''
-                                    }`}
+                                className={`h-12 flex items-center justify-center text-lg font-medium ${isSpecial ? 'relative' : ''}`}
                             >
                                 {isSpecial ? (
                                     <div className="relative w-12 h-12 mx-auto">
                                         <img
                                             src={corazon}
                                             alt="corazón"
-                                            className="absolute mt-1 inset-0 w-full h-full object-contain text-[#D4AF37] "
+                                            className="absolute mt-1 inset-0 w-full h-full object-contain"
                                         />
                                         <span className="absolute inset-0 flex items-center justify-center text-[#D4AF37] font-bold z-20">
                                             20
