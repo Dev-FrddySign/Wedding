@@ -28,6 +28,8 @@ const guestData = {
     Fam020: { name: 'Flia Luca Ramirez', guests: 2 },
     Fam021: { name: 'Flia Tejada Romero', guests: 2 },
     Fam022: { name: 'Hectluis Leon', guests: 1 },
+    Fam023: { name: 'Victor Morales', guests: 1 },
+    Fam024: { name: 'Maria Diaz & Compañia', guests: 2 },
 };
 
 const usedCodes = new Set();
