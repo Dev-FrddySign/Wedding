@@ -65,12 +65,12 @@ const NumeroCuenta = () => {
         const texto = ` Regalo de bodas Freddy y Graciela
 Gracias ${nombreParaNota}
 
-Nombre: Freddy José Saldivia Rodríguez
-RUT: 12.345.678-9
-Banco: Banco Estado
+Nombre: Graciela Rivas
+RUT: 26350589-1
+Banco: Banco Falabella
 Tipo de cuenta: Cuenta Corriente
-N° Cuenta: 00000000000000
-Correo: frddysign@gmail.com
+N° Cuenta: 19991545728
+Correo: grivascoronel@gmail.com
 
 "Agradecemos su compañía en este día, y si desean obsequiarnos con alegría, un aporte en efectivo, con mucho amor, nos ayudará a construir nuestro futuro mejor."
         `.trim();
